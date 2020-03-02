@@ -33,16 +33,15 @@ module PizzasHelper
     pizza
   end
 
-  def save_pizza_ingredient(pizza, ingredients)
-    success = true
-    ingredients.each do |ingredient|
-      pi = PizzaIngredient.new
-      pi.ingredient = Ingredient.find_by(code: ingredient)
-      pi.pizza_model = pizza
-      success = success && pi.save
+  def get_ingredients
+    res = []
+    current_ingredients.each do |ingredient|
+      i = Ingredient.find_by(code: ingredient)
+      res << i
     end
-    success
+    res
   end
+
 
   private
   def get_class(pizza, ingredient)

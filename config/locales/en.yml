@@ -37,3 +37,4 @@ en:
     error:
       create: "Sorry we cant create your pizza"
       relation: "Sorry we cant save your pizza"
+      ingredient: "Choose one ingredient please..."
