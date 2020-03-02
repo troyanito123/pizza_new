@@ -32,9 +32,21 @@
 en:
   hello: "Hello world"
 
+  not_found: "Resource not found ..."
+
+  session:
+    error:
+      login: "Email or password incorrect!"
+      no-login: "You should be logged in to access the page"
+    is_logging: "Please, logout for go to logging..."
+
+
+
   pizza:
     create: "Pizza created, wait your order please..."
     error:
       create: "Sorry we cant create your pizza"
       relation: "Sorry we cant save your pizza"
       ingredient: "Choose one ingredient please..."
+  user:
+    create: "Account create successfully!"

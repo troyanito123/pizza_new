@@ -13,22 +13,26 @@ class PizzasController < ApplicationController
   def preview
     if current_ingredients.size == 0
       flash[:danger] = I18n.t 'pizza.error.ingredient'
-      redirect_to root_path
+      redirect_to pizza_path
     end
   end
 
   def create
     pizza = Pizza.new(cost: current_cost)
+    pizza.user = current_user
     pizza.size = Size.find_by(code: current_size)
     pizza.ingredients = get_ingredients
     if pizza.save
       flash[:success] = I18n.t 'pizza.create'
-      redirect_to root_path
+      redirect_to pizza_path
     else
       flash[:danger] = I18n.t 'pizza.error.create'
-      redirect_to root_path
+      redirect_to pizza_path
     end
+  end
 
+  def my_pizzas
+    @pizzas = User.find(current_user.id).pizzas
   end
 
   def add_ingredient
