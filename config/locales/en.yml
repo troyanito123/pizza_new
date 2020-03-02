@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+  pizza:
+    create: "Pizza created, wait your order please..."
+    error:
+      create: "Sorry we cant create your pizza"
+      relation: "Sorry we cant save your pizza"

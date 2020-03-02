@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   post 'remove_ingredient', to: 'pizzas#remove_ingredient', as: 'remove'
 
   post 'change_size', to: 'pizzas#change_size', as: 'change'
+
+  get 'preview', to: 'pizzas#preview'
+
+  post 'create', to: 'pizzas#create'
 end
