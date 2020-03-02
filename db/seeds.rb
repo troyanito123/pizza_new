@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+sizes = Size.create!([
+                        {name: 'Small', code: 'small'},
+                        {name: 'Medium', code: 'medium'},
+                        {name: 'Large', code: 'large'},
+                        {name: 'Extra Large', code: 'extra_large'},
+                    ])
+ingredients = Ingredient.create!([
+                                    {name: 'Mozzarella', code: 'mozzarella'},
+                                    {name: 'Mushroom', code: 'mushroom'},
+                                    {name: 'Parmesan', code: 'parmesan'},
+                                    {name: 'Pineapple', code: 'pineapple'},
+                                ])

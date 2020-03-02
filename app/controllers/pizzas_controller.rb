@@ -37,14 +37,14 @@ class PizzasController < ApplicationController
     @type =  params[:type]
     current_ingredients << @type
     @pizza = create_pizza
-    save_cost(get_cost(@pizza))
+    save_cost(@pizza.get_cost(current_size))
   end
 
   def remove_ingredient
     @type = params[:type]
     current_ingredients.delete(@type)
     @pizza = create_pizza
-    save_cost(get_cost(@pizza))
+    save_cost(@pizza.get_cost(current_size))
   end
 
   def change_size
@@ -52,7 +52,7 @@ class PizzasController < ApplicationController
     @size = params[:size]
     save_size(@size)
     @pizza = create_pizza
-    save_cost(get_cost(@pizza))
+    save_cost(@pizza.get_cost(current_size))
   end
 
 end

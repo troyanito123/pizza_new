@@ -1,13 +1,8 @@
-module Pizza
+module PizzaModule
   class Pineapple < PizzaDecorator
 
     COST = 5.freeze
     COST_SIZE = {small: 0, medium: 4, large: 6, extra_large: 7}.freeze
-    INGREDIENT = 'pineapple '.freeze
-
-    def ingredients
-      super + INGREDIENT
-    end
 
     def small
       super + COST + COST_SIZE[:small]
@@ -23,6 +18,19 @@ module Pizza
 
     def extra_large
       super + COST + COST_SIZE[:extra_large]
+    end
+
+    def get_cost(size)
+      case size
+      when 'small'
+        small
+      when 'medium'
+        medium
+      when 'large'
+        large
+      when 'extra_large'
+        extra_large
+      end
     end
 
   end

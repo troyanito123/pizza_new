@@ -25,25 +25,12 @@ module PizzasHelper
   end
 
   def create_pizza
-    pizza = Pizza::PizzaDefault.new
+    pizza = PizzaModule::PizzaDefault.new
     current_ingredients.each do |ingredient|
       pwi = get_class(pizza, ingredient)
       pizza = pwi
     end
     pizza
-  end
-
-  def get_cost(pizza)
-    case current_size
-    when 'small'
-      pizza.small
-    when 'medium'
-      pizza.medium
-    when 'large'
-      pizza.large
-    when 'extra_large'
-      pizza.extra_large
-    end
   end
 
   def save_pizza_ingredient(pizza, ingredients)
@@ -61,13 +48,13 @@ module PizzasHelper
   def get_class(pizza, ingredient)
     case ingredient
     when 'parmesan'
-      Pizza::Parmesan.new pizza
+      PizzaModule::Parmesan.new pizza
     when 'mozzarella'
-      Pizza::Mozzarella.new pizza
+      PizzaModule::Mozzarella.new pizza
     when 'pineapple'
-      Pizza::Pineapple.new pizza
+      PizzaModule::Pineapple.new pizza
     when 'mushroom'
-      Pizza::Mushroom.new pizza
+      PizzaModule::Mushroom.new pizza
     end
   end
 
