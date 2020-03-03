@@ -50,3 +50,8 @@ en:
       ingredient: "Choose one ingredient please..."
   user:
     create: "Account create successfully!"
+
+  report:
+    create: "Report created successfully!"
+    error:
+      create: "Ooups ..."

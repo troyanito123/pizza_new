@@ -3,6 +3,7 @@ class PizzasController < ApplicationController
   include PizzasHelper
 
   def new
+    # ReportDayJob.perform_later 1,2,3
     @ingredients = Ingredient.all
     @sizes = Size.all
     save_cost(10)

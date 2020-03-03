@@ -20,5 +20,10 @@ Rails.application.routes.draw do
 
   get 'my_pizzas', to: 'pizzas#my_pizzas'
 
+  resources :reports
+
+  post 'on/:id', to: 'reports#report_on', as: 'on'
+  delete 'off/:id', to: 'reports#report_off', as: 'off'
+
   get '*path', to: 'pizzas#new'
 end

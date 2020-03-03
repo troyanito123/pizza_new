@@ -1,0 +1,31 @@
+<div class="container bg-white mx-auto">
+  <h1>Reports</h1>
+  <table class="table table-striped">
+    <thead class="table table-dark">
+    <th>Day:</th>
+    <th>Hour:</th>
+    <th>Prevalence:</th>
+    <th>To:</th>
+    <th>State:</th>
+    </thead>
+    <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td> <%= report.day.strftime('%A') %> </td>
+        <td> <%= report.time.strftime('%H:%M') %> </td>
+        <td> <%= report.prevalence %> </td>
+        <td> <%= report.email %> </td>
+        <td>
+          <div id="<%= report.id %>">
+            <% if report.state %>
+              <%= link_to :On, off_path(report), method: :delete, remote: true, id: "#{report.id}-on", class: 'badge badge-primary' %>
+            <% else %>
+              <%= link_to :Off, on_path(report), method: :post, remote: true, id: "#{report.id}-off", class: 'badge badge-danger' %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
