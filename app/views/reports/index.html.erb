@@ -11,7 +11,7 @@
     <tbody>
     <% @reports.each do |report| %>
       <tr>
-        <td> <%= report.day.strftime('%A') %> </td>
+        <td> <%= report.day.strftime('%A %b-%d') %> </td>
         <td> <%= report.time.strftime('%H:%M') %> </td>
         <td> <%= report.prevalence %> </td>
         <td> <%= report.email %> </td>

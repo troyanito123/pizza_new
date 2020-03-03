@@ -3,7 +3,6 @@ class PizzasController < ApplicationController
   include PizzasHelper
 
   def new
-    # ReportDayJob.perform_later 1,2,3
     @ingredients = Ingredient.all
     @sizes = Size.all
     save_cost(10)
@@ -25,7 +24,7 @@ class PizzasController < ApplicationController
     pizza.size = Size.find_by(code: current_size)
     pizza.ingredients = get_ingredients
     if pizza.save
-      # PizzaMailer.delay(run_at: 5.minutes.from_now).send_order(current_user, pizza)
+      PizzaMailer.delay(run_at: 5.minutes.from_now).send_order(current_user, pizza)
       flash[:success] = I18n.t 'pizza.create'
       redirect_to pizza_path
     else
