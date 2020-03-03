@@ -18,3 +18,4 @@ ingredients = Ingredient.create!([
                                     {name: 'Parmesan', code: 'parmesan'},
                                     {name: 'Pineapple', code: 'pineapple'},
                                 ])
+User.create!(name: 'admin', email: 'admin@test.com', address: 'san martin 123', password: '123123', password_confirmation: '123123')

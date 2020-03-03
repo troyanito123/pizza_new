@@ -18,11 +18,13 @@ class PizzasController < ApplicationController
   end
 
   def create
-    pizza = Pizza.new(cost: current_cost)
+    name = "Pizza #{current_size} with #{current_ingredients.first} and #{current_ingredients.last}"
+    pizza = Pizza.new(cost: current_cost, name: name)
     pizza.user = current_user
     pizza.size = Size.find_by(code: current_size)
     pizza.ingredients = get_ingredients
     if pizza.save
+      # PizzaMailer.delay(run_at: 5.minutes.from_now).send_order(current_user, pizza)
       flash[:success] = I18n.t 'pizza.create'
       redirect_to pizza_path
     else
@@ -32,7 +34,7 @@ class PizzasController < ApplicationController
   end
 
   def my_pizzas
-    @pizzas = User.find(current_user.id).pizzas
+    @pizzas = User.find(current_user.id).pizzas.includes(:ingredients)
   end
 
   def add_ingredient

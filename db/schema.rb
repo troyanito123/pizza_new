@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_183346) do
+ActiveRecord::Schema.define(version: 2020_03_02_213723) do
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
@@ -34,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_03_02_183346) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.string "name"
     t.index ["size_id"], name: "index_pizzas_on_size_id"
     t.index ["user_id"], name: "index_pizzas_on_user_id"
   end

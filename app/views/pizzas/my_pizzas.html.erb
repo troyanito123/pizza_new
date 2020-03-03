@@ -2,15 +2,15 @@
   <% @pizzas.each do |pizza| %>
 
     <div class="bg-light m-5">
-      <strong>Pizza NRO -- </strong>
-
+      <strong><%= pizza.name %></strong>
       <% pizza.ingredients do |ingredient| %>
-
+        <% p "#########" %>
+        <% p ingredient.last%>
         <p> <%= ingredient.name %> </p>
       <% end %>
 
       <p>Cost: <%= pizza.cost %></p>
-      <p>Cost: <%= pizza.size.name %></p>
+      <p>Size: <%= pizza.size.name %></p>
       <p>Order at: <%= I18n.l(pizza.created_at, format: :short) %></p>
 
   </div>
