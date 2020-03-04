@@ -111,21 +111,24 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   #
   # Setup the mailer config
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.smtp_settings = {
-      :api_key => ENV['SENDGRID_API_KEY'],
-      :user_name => ENV['SENDGRID_USERNAME'],
-      :password => ENV['SENDGRID_PASSWORD'],
-      :domain => 'pizza-mail.herokuapp.com',
-      :address => 'smtp.sendgrid.net',
-      :port => 587,
-      :authentication => :plain,
-      :enable_starttls_auto => true
-  }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.smtp_settings = {
+  #     :api_key => ENV['SENDGRID_API_KEY'],
+  #     :user_name => ENV['SENDGRID_USERNAME'],
+  #     :password => ENV['SENDGRID_PASSWORD'],
+  #     :domain => 'pizza-mail.herokuapp.com',
+  #     :address => 'smtp.sendgrid.net',
+  #     :port => 587,
+  #     :authentication => :plain,
+  #     :enable_starttls_auto => true
+  # }
   # config.action_mailer.delivery_method = :sendgrid_actionmailer
   # config.action_mailer.sendgrid_actionmailer_settings = {
   #     api_key: ENV['SENDGRID_API_KEY'],
   #     raise_delivery_errors: true
   # }
+  #
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
+  config.action_mailer.sendgrid_actionmailer_settings = {api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD']}
 end
