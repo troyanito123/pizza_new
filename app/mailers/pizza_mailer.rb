@@ -18,8 +18,8 @@ class PizzaMailer < ApplicationMailer
   #
   #   en.pizza_mailer.send_report.subject
   #
-  def send_report(pizzas)
+  def send_report(pizzas, email)
     @pizzas = pizzas
-    mail to: 'jassmanniq@gmail.com', subject: "Report of day: #{Time.now.strftime("%Y-%m-%d")}"
+    mail to: email, subject: "Report of day: #{Time.now.strftime("%Y-%m-%d")}"
   end
 end
