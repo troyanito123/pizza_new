@@ -1,0 +1,2 @@
+namespace :report do
+end

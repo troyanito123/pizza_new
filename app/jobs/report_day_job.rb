@@ -2,11 +2,13 @@ class ReportDayJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-
+    report_daily
   end
 
   def report_daily
-    PizzaMailer.delay(run_at: time.end_of_minute).send_report(report)
+    # reports = Report.daily
+    pizzas = Pizza.created_after(Time.new.midnight)
+    PizzaMailer.send_report(pizzas).deliver
   end
 
 
