@@ -24,7 +24,8 @@ class PizzasController < ApplicationController
     pizza.size = Size.find_by(code: current_size)
     pizza.ingredients = get_ingredients
     if pizza.save
-      PizzaMailer.delay(run_at: 5.minutes.from_now).send_order(current_user, pizza)
+      # PizzaMailer.delay(run_at: 1.minutes.from_now).send_order(current_user, pizza)
+      PizzaMailer.send_order(current_user, pizza).deliver_later
       flash[:success] = I18n.t 'pizza.create'
       redirect_to pizza_path
     else
