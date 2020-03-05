@@ -25,7 +25,7 @@ task :send_report_weekly => :environment do
 end
 
 desc "send monthly reports"
-task :send_report_daily => :environment do
+task :send_report_monthly => :environment do
   puts "Sending report..."
   reports = Report.on.monthly
   reports.each do |report|

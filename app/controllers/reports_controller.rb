@@ -5,13 +5,11 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @days = %w(monday tuesday wednesday thursday friday saturday sunday)
     @prevalence = %w(daily weekly monthly)
     @report = Report.new
   end
 
   def create
-    @days = %w(monday tuesday wednesday thursday friday saturday sunday)
     @prevalence = %w(daily weekly monthly)
     @report = Report.new(report_params)
     if @report.save
@@ -20,7 +18,12 @@ class ReportsController < ApplicationController
     else
       render :new
     end
+  end
 
+  def destroy
+    report = Report.find(params['id'])
+    @id = report.id
+    report.destroy
   end
 
   def report_on
