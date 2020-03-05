@@ -18,14 +18,15 @@ class PizzasController < ApplicationController
   end
 
   def create
+
+    # refactor?
     name = "Pizza #{current_size} with #{current_ingredients.first} and #{current_ingredients.last}"
     pizza = Pizza.new(cost: current_cost, name: name)
     pizza.user = current_user
     pizza.size = Size.find_by(code: current_size)
     pizza.ingredients = get_ingredients
     if pizza.save
-      # PizzaMailer.delay(run_at: 1.minutes.from_now).send_order(current_user, pizza)
-      PizzaMailer.send_order(current_user, pizza).deliver
+      SendOrderJob.set(wait: 1.minute).perform_later(current_user.id, pizza.id)
       flash[:success] = I18n.t 'pizza.create'
       redirect_to pizza_path
     else

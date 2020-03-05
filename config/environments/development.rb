@@ -62,7 +62,21 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :sendgrid_actionmailer
   config.action_mailer.sendgrid_actionmailer_settings = {
-      api_key: '',
+      api_key: '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',
       raise_delivery_errors: true
   }
+  #
+  # config.action_mailer.delivery_method = :smtp
+  # host = 'example.com' #replace with your own url
+  # config.action_mailer.default_url_options = { host: host }
+  #
+  # # SMTP settings for gmail
+  # config.action_mailer.smtp_settings = {
+  #     :address              => "smtp.gmail.com",
+  #     :port                 => 587,
+  #     :user_name            => ENV["GOOGLE_USER_NAME"],
+  #     :password             => ENV["GOOGLE_PASSWORD"],
+  #     :authentication       => "plain",
+  #     #:enable_starttls_auto => true
+  # }
 end

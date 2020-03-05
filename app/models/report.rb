@@ -1,6 +1,5 @@
 class Report < ApplicationRecord
 
-  scope :state, ->(state) { where("state = ?", state) }
   scope :on, ->{ where("state = ?", true) }
   scope :daily, ->{ where("prevalence = ?", 'daily') }
   scope :weekly, ->{ where("prevalence = ?", 'weekly') }

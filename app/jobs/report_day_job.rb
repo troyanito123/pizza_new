@@ -1,15 +1,9 @@
 class ReportDayJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    report_daily
+  def perform(email)
+    pizzas = Pizza.daily
+    PizzaMailer.send_report(pizzas, email).deliver
   end
-
-  def report_daily
-    # reports = Report.daily
-    pizzas = Pizza.created_after(Time.new.midnight)
-    PizzaMailer.send_report(pizzas).deliver
-  end
-
 
 end
