@@ -5,7 +5,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.datetime :time
       t.string :email
       t.integer :prevalence
-      t.integer :status
+      t.integer :status, default: 0
       t.boolean :state, default: false
 
       t.timestamps

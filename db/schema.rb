@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_213524) do
     t.datetime "time"
     t.string "email"
     t.integer "prevalence"
-    t.integer "status"
+    t.integer "status", default: 0
     t.boolean "state", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

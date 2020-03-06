@@ -24,4 +24,8 @@ class ApplicationController < ActionController::Base
     redirect_back fallback_location: root_path
   end
 
+  def change_zone
+    # cambiar la zona
+  end
+
 end

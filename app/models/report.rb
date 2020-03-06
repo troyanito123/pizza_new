@@ -3,7 +3,7 @@ class Report < ApplicationRecord
   has_many :report_days, dependent: :destroy
   has_many :days, through: :report_days
 
-  enum status: [ :error, :done ]
+  enum status: [ :ready, :queue, :done, :error ]
   enum prevalence: [ :daily, :weekly, :monthly, :custom ]
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

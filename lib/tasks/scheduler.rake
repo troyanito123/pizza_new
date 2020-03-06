@@ -6,7 +6,8 @@ task :send_report_daily => :environment do
     time = report.time
     report.time = time + 86400
     if report.save
-      ReportDayJob.set(wait_until: time).perform_later(report.email)
+      ReportDayJob.set(wait_until: time).perform_later(report.email, report.id)
+      report.queue!
     end
   end
   puts "done."
@@ -23,7 +24,8 @@ task :send_report_weekly => :environment do
       report.day = day + 7
       report.time = time + 86400*7
       if report.save
-        ReportWeekJob.set(wait_until: time).perform_later(report.email)
+        ReportWeekJob.set(wait_until: time).perform_later(report.email, report.id)
+        report.queue!
       end
     end
   end
@@ -41,7 +43,8 @@ task :send_report_monthly => :environment do
       report.day = day.next_month
       report.time = time + 86400*30
       if report.save
-        ReportMonthJob.set(wait_until: time).perform_later(report.email)
+        ReportMonthJob.set(wait_until: time).perform_later(report.email, report.id)
+        report.queue!
       end
     end
   end
