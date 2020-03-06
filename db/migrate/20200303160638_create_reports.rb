@@ -2,9 +2,10 @@ class CreateReports < ActiveRecord::Migration[6.0]
   def change
     create_table :reports do |t|
       t.date :day
-      t.time :time
-      t.string :prevalence
+      t.datetime :time
       t.string :email
+      t.integer :prevalence
+      t.integer :status
       t.boolean :state, default: false
 
       t.timestamps

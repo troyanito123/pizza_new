@@ -1,17 +1,26 @@
 class ReportsController < ApplicationController
 
+  include ReportHelper
+
   def index
-    @reports = Report.all
+    @reports = Report.all.includes(:days)
   end
 
   def new
-    @prevalence = %w(daily weekly monthly)
+    @days = Day.all
     @report = Report.new
   end
 
   def create
-    @prevalence = %w(daily weekly monthly)
+    @days = Day.all
     @report = Report.new(report_params)
+    prevalence = params[:report][:prevalence].to_i
+    @report.prevalence = prevalence
+
+    if prevalence == 3 && params.include?("custom")
+      @report.days = create_days(params[:custom][:days])
+    end
+
     if @report.save
       flash[:success] = I18n.t 'report.create'
       redirect_to reports_path
@@ -44,8 +53,14 @@ class ReportsController < ApplicationController
     end
   end
 
+  def custom_prevalence
+    @prevalence = params['prevalence']
+    @days = Day.all
+  end
+
   private
+
   def report_params
-    params.require(:report).permit('day', 'time(4i)', 'time(5i)', 'prevalence', 'email')
+    params.require(:report).permit('day', 'time', 'email')
   end
 end

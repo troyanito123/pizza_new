@@ -3,8 +3,7 @@
 
     <div class="bg-light m-5">
       <strong><%= pizza.name %></strong>
-      <% pizza.ingredients do |ingredient| %>
-        <% p "#########" %>
+      <% pizza.ingredients.each do |ingredient| %>
         <% p ingredient.last%>
         <p> <%= ingredient.name %> </p>
       <% end %>

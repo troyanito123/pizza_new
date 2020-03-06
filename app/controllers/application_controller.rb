@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
   # include Pundit
-
   before_action :logged_user
 
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found

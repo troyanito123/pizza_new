@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   post 'on/:id', to: 'reports#report_on', as: 'on'
   delete 'off/:id', to: 'reports#report_off', as: 'off'
+  post 'custom', to: 'reports#custom_prevalence'
 
   get '*path', to: 'pizzas#new'
 end

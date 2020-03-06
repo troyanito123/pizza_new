@@ -2,20 +2,32 @@
   <h1 class="text-center">Reports</h1>
   <table class="table">
     <thead>
-    <th>Day:</th>
+    <th>Start in:</th>
     <th>Hour:</th>
     <th>Prevalence:</th>
+    <th>Days?</th>
     <th>To:</th>
     <th>State:</th>
+    <th>Status</th>
     <th>Options:</th>
     </thead>
     <tbody>
     <% @reports.each do |report| %>
 
         <tr id="report-<%= report.id %>">
-          <td> <%= report.day.strftime('%A %b-%d') %> </td>
+          <td> <%= report.day.strftime('%b-%d') %> </td>
           <td> <%= report.time.strftime('%H:%M') %> </td>
           <td> <%= report.prevalence %> </td>
+          <td>
+            <% if report.days.empty? && report.prevalence == 'weekly'%>
+               <%= report.time.strftime('%A') %>
+            <% else %>
+              <% report.days.each do |d| %>
+                <%= d.name %>
+              <% end %>
+            <% end %>
+
+          </td>
           <td> <%= report.email %> </td>
           <td>
             <div id="<%= report.id %>">
@@ -26,6 +38,7 @@
               <% end %>
             </div>
           </td>
+          <td> <%= report.status %> </td>
           <td>
             <%= link_to :Delete, report_path(report), method: :delete, remote: true,
                         class: 'badge badge-danger', data: {confirm: 'Are you destroy this report?'} %>

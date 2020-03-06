@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_160638) do
+ActiveRecord::Schema.define(version: 2020_03_05_213524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "days", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
@@ -57,11 +64,21 @@ ActiveRecord::Schema.define(version: 2020_03_03_160638) do
     t.index ["user_id"], name: "index_pizzas_on_user_id"
   end
 
+  create_table "report_days", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "day_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["day_id"], name: "index_report_days_on_day_id"
+    t.index ["report_id"], name: "index_report_days_on_report_id"
+  end
+
   create_table "reports", force: :cascade do |t|
     t.date "day"
-    t.time "time"
-    t.string "prevalence"
+    t.datetime "time"
     t.string "email"
+    t.integer "prevalence"
+    t.integer "status"
     t.boolean "state", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -87,4 +104,6 @@ ActiveRecord::Schema.define(version: 2020_03_03_160638) do
   add_foreign_key "pizza_ingredients", "pizzas"
   add_foreign_key "pizzas", "sizes"
   add_foreign_key "pizzas", "users"
+  add_foreign_key "report_days", "days"
+  add_foreign_key "report_days", "reports"
 end
